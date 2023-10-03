@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>quiz</title>
+	</head>
+	<body>
+		<center>quiz</center>
+		<ul>
+			{% for question in question_list %}
+			<li>
+				<div>
+				{{ forloop.counter }}
+				<span>.</span>
+				{{ question.text }}
+				</div>
+				
+				<div>
+				{% for option in option_list %}
+					{%  if option.question_id == question.id  %}
+						{%  if question.is_multiple_choice  %}
+						<input name="{{ option.question_id }}" type="checkbox"/>
+						{% else %}
+						<input name="{{ option.question_id }}" type="radio"/>
+						{%  endif  %}
+						<span>{{ option.choice_text }}<span>
+					{%  endif  %}
+				{% endfor %}
+				</div>
+			</li>
+			{% endfor %}
+		<ul>
+		
+		<div>
+			<input id="submit" type="submit" value="submit"/>
+		</div>
+	</body>
+</html>
